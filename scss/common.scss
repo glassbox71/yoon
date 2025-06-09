@@ -1,0 +1,740 @@
+@charset 'utf-8';
+@use "var" as *;
+
+/* 웹폰트 연결 */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap");
+
+/* 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+}
+
+body {
+  @include font-stack(
+    $size: $fz-default,
+    $family: $sans-serif,
+    $line-height: $lh-default,
+    $color: $font-color
+  );
+  background-color: #fff; // 문서의 배경색은 없기때문에 입력해야함
+  // font: {
+  //     size: $fz-default;
+  //     family: $sans-serif;
+  // }
+  // line-height: $lh-default; //1.4 (1.2는 기본 줄간격)
+  // color: $font-color; // 컴퓨터는 '=' 을 같다는 표현이 아니라 대입되는 값으로 본다.
+  word-break: keep-all;
+  // min-height: 100vh;
+
+  .mo-menu-wrap{
+    display: none;
+  }
+}
+
+h2 {
+}
+
+ol,
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: $font-color;
+  text-decoration: none;
+}
+
+img,
+video,
+iframe {
+  vertical-align: middle;
+}
+
+input,
+select,
+textarea,
+button {
+  @include font-stack($size: 1em, $family: $sans-serif, $color: $font-color);
+  outline: none;
+  // font: {
+  //     size: 1em;
+  //     family: $sans-serif;
+  // }
+  // color: $font-color;
+  // outline:none;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+address,
+em,
+i {
+  font-style: normal;
+}
+
+table {
+  width: 100%; //table은 너비 값을 입력해줘야함
+  border-collapse: collapse;
+}
+
+/* 공용클래스 */
+.inner {
+  //수치 바꾸기
+  max-width: 1720px;
+
+  padding: 0 12px;
+  //모바일과 패드에 패딩이 있어서 공용으로 잡고 테블릿만 제거
+  margin: 0 auto;
+  // background-color: rgba(255, 0, 0, 0.2);
+}
+
+.sound-only,
+.blind {
+  @include pos($l: -9999em);
+  // position: absolute;
+  // left: -9999em;
+}
+
+.clearfix {
+  //옛날 문서에서 사용되던 명령어
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+/* 구글아이콘 표시 */
+$icons: "search" "\e8b6",
+  // 역슬래시가 특수문자임을 정의함
+  "home" "\e88a",
+  "menu" "\e5d2", "close" "\e5cd", "favorite" "\e87d", "app" "\e5c3",
+  "arrow-basic" "\e5cc", "arrow-forward" "\e5c8", "arrow-round" "\e5c3",
+  "arrow-down" "\e313", "download" "\f090", "policy" "\ea17", "sort" "\e164";
+
+@each $name, $code in $icons {
+  .icon-#{$name}::before {
+    content: $code;
+  }
+}
+
+.google-icon {
+  &:before,
+  &:after {
+    font-family: "Material Symbols Outlined";
+  }
+}
+
+//아이콘
+$icon-sizes: "small" 20px, "medium" 28px, "large" 48px;
+
+@each $name, $size in $icon-sizes {
+  .icon-#{$name} {
+    width: $size;
+    height: $size;
+    line-height: $size;
+    font-size: $size;
+    text-align: center;
+  }
+}
+
+/* 1.header */
+//헤더는 다시 설계해야함 (내 디자인에 맞게)
+//헤더 디자인시 배경을 흰색으로 생각하고 디자인하는게 기본디자인이다. (메뉴글씨색을 어두운색으로 디자인해야함)
+#yoon-hd {
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  z-index: 1000;
+  transition: 0.5s;
+
+  .logo {
+    > a {
+      background-image: url(../images/logo_wh.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      display: block;
+      width: 300px;
+      height: 50px;
+    }
+  }
+  .logoB {
+    > a {
+      background-image: url(../images/logo.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      display: block;
+      width: 300px;
+      height: 50px;
+    }
+  }
+}
+
+#yoon-hd.whiteBg {
+  background-color: #fff;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    > a {
+      background-image: url(../images/logo.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      display: block;
+      width: 300px;
+      height: 50px;
+    }
+  }
+
+  .main-menu-list > a {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #000;
+  }
+
+  .lang-list {
+    position: relative;
+    // background-color: beige;
+    margin-right: 10px;
+
+    > a {
+      line-height: 10px;
+      font-size: 0.9em;
+      color: #000;
+    }
+
+    .icon-arrow-down {
+      font-size: 1.1em;
+      vertical-align: middle;
+    }
+
+    &.on > .lang-en {
+      display: block;
+    }
+  }
+
+  .icon-sort {
+    font-size: 1.9em;
+    line-height: 0;
+    padding-top: 15px;
+    color: #000;
+  }
+  .gnb {
+    // background-color: red;
+    height: 100px;
+
+    &:hover > .menu-wrap .bg-menu {
+      height: 335%;
+    }
+  }
+}
+
+#yoon-hd > .inner {
+  @include flex($justify-content: space-between, $align-items: center);
+}
+
+// >a {
+//     //비율박스 설계
+//     display: block;
+//     padding-top: 36.36%;
+//     background-color: #ff0;
+//     @include fit-image($file: '../images/logo.png');
+// }
+
+/* GNB */
+.gnb {
+  // background-color: red;
+  height: 100px;
+
+  &:hover > .menu-wrap .bg-menu {
+    height: 335%;
+  }
+}
+
+.menu-wrap {
+  @include flex($justify-content: space-between);
+  margin-top: 15px;
+
+  &:hover > li .sub-menu {
+    display: block;
+  }
+
+  &:hover > li > a {
+    color: #000;
+  }
+}
+
+.main-menu-list {
+  // background-color: rgba(255, 0, 0, 0.2);
+  padding: 20px 60px;
+}
+
+.main-menu-list > a {
+  display: block;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #fff;
+}
+
+.sub-menu {
+  display: none;
+  margin-top: 30px;
+  padding: 30px 0px;
+  line-height: 2.5;
+}
+
+.sub-menu > li > a {
+  color: #999;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.bg-menu {
+  @include pos($l: 0, $t: 0);
+  max-width: none;
+  background-color: #fcfcfc;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 0%;
+  z-index: -1;
+}
+
+.util-menu {
+  @include flex();
+}
+.lang-wrap {
+  @include flex($gap: 20px);
+
+  > a {
+    display: block;
+    width: 25px;
+    height: 25px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .active {
+    display: block;
+  }
+}
+
+.lang-list {
+  position: relative;
+  // background-color: beige;
+  margin-right: 10px;
+
+  > a {
+    line-height: 10px;
+    font-size: 0.9em;
+    color: #fff;
+  }
+
+  .icon-arrow-down {
+    font-size: 1.1em;
+    vertical-align: middle;
+  }
+
+  &.on > .lang-en {
+    display: block;
+  }
+}
+.lang-listB {
+  position: relative;
+  // background-color: beige;
+  margin-right: 10px;
+
+  > a {
+    line-height: 10px;
+    font-size: 0.9em;
+    color: #000;
+  }
+
+  .icon-arrow-down {
+    font-size: 1.1em;
+    vertical-align: middle;
+  }
+
+  &:hover > .lang-en {
+    display: block;
+  }
+}
+
+.lang-en {
+  display: none;
+  @include pos($l: -50%);
+  margin-top: 10px;
+  background-color: #fcfcfc;
+  padding: 10px 20px 10px;
+  box-shadow: (0 0 8 0.2);
+
+  > a {
+    display: block;
+    text-align: center;
+    line-height: 2;
+    font-size: 0.85em;
+    color: #999;
+
+    &:hover {
+      color: $primary-color;
+      font-weight: 500;
+    }
+  }
+}
+
+.icon-sort {
+  font-size: 1.9em;
+  line-height: 0;
+  padding-top: 15px;
+  color: #fff;
+}
+.icon-sortB {
+  font-size: 1.9em;
+  line-height: 0;
+  padding-top: 15px;
+  color: #000;
+}
+
+#yoon-hero-wrap {
+  // position: relative;
+  height: 100vh;
+}
+
+#yoon-hero-wrap .video-wrap {
+  position: relative;
+  height: 100%;
+  z-index: -1;
+
+  // padding-top: 100%;
+  &::after {
+    content: "";
+    @include pos($l: 0%, $t: 0);
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+  }
+}
+
+#yoon-hero-wrap .hero-video {
+  // @include pos($l: 0%, $t: 0);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#yoon-hero-wrap .title-wrap {
+  @include pos($l: 50%, $t: 40%);
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+}
+
+#yoon-hero-wrap .title-wrap > .title-text .main-title {
+  font-size: 3.5em;
+}
+
+#yoon-hero-wrap .title-wrap > .title-text .sub-title {
+  font-size: 3em;
+  font-weight: 400;
+  padding-bottom: 15px;
+}
+
+#yoon-hero-wrap .title-wrap > .title-text .text {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+#yoon-hero-wrap .scroll-btn {
+  @include pos($l: 50%, $b: 2%);
+  display: block;
+  // background-color: aqua;
+  animation: scrollAni 0.75s infinite alternate;
+  transform: translate(-50%);
+
+  > strong {
+    font-size: 0.95em;
+    font-weight: 200;
+    color: #fff;
+    opacity: 0.8;
+  }
+
+  @keyframes scrollAni {
+    0% {
+      bottom: 5%;
+      opacity: 0.8;
+    }
+
+    100% {
+      bottom: 1%;
+      opacity: 0.3;
+    }
+  }
+}
+
+.arrow-wrap {
+  position: relative;
+  // background-color: yellow;
+  display: block;
+  height: 50px;
+}
+
+.arrow1 {
+  @include pos($l: 40%, $t: -20%);
+  // background-color: aquamarine;
+  text-align: center;
+  font-size: 1.4em;
+  color: #fff;
+  opacity: 0.7;
+}
+
+.arrow2 {
+  @include pos($l: 40%, $t: -5%);
+  // background-color: sandybrown;
+  text-align: center;
+  font-size: 1.4em;
+  color: #fff;
+  opacity: 0.3;
+}
+
+.site-map-wrap {
+  @include pos($pos: fixed, $l: 2%, $b: 5%);
+  z-index: 1000;
+}
+.site-map-list>li {
+
+  margin: 10px 0;
+
+  a {
+    @include flex($align-items: center);
+
+    img {
+      display: block;
+      margin: 0 10px;
+      width: 20px;
+      height: 20px;
+      opacity: 0;
+    }
+
+    span {
+      display: block;
+      padding: 0 10px;
+      color: #666;
+    }
+  }
+
+  &:hover img,
+  &.active img {
+    opacity: 1;
+  }
+
+  &:hover span,
+  &.active span {
+    //  selector-append($selectors: …)>span {
+    color: #fff;
+    // text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 255, 0.7);
+    border-radius: 3px;
+  }
+}
+.site-map-list > li > a {
+  @include flex($align-items: center);
+  margin: 10px 0;
+
+  img {
+    display: block;
+    margin: 0 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+  }
+
+  span {
+    display: block;
+    padding: 0 10px;
+    color: #666;
+  }
+
+  &:hover > img {
+    opacity: 1;
+  }
+
+  &:hover > span {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
+}
+
+/* mobile max-width 767px */
+
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 12px;
+    .mo-menu-wrap{
+      display: block;
+    }
+  }
+
+  #yoon-hd {
+    position: absolute;
+    background: none;
+    box-shadow: none;
+    padding-top: 10px;
+
+    .inner {
+      display: flex;
+      align-items: center;
+      .logo {
+        filter: invert(0);
+        display: block;
+        width: 300px;
+        > a {
+          display: block;
+          width: 100%;
+          background-position: center center;
+        }
+      }
+    }
+
+    .main-menu-list {
+      display: none;
+    }
+
+    .util-menu {
+      @include flex($gap: 15px, $align-items: center);
+      // background-color: aqua;
+      padding: 0 10px;
+      .lang-wrap {
+        a {
+          display: block;
+          width: 23px;
+          height: 23px;
+
+          // background-color: #fff;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .lang-list {
+          display: none;
+
+          > a {
+            display: none;
+          }
+        }
+      }
+
+      > a {
+        display: block;
+        width: 30px;
+        height: 30px;
+
+        // background-color: antiquewhite;
+        .icon-sort {
+          font-size: 2.5em;
+          color: #fff;
+        }
+      }
+    }
+
+    nav {
+      display: none;
+    }
+  }
+
+  #yoon-hero-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    .scroll-btn {
+      display: none;
+    }
+
+    .title-wrap {
+      @include pos($l: 50%, $t: 90%);
+      width: 100%;
+      height: 100%;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      overflow: hidden;
+      transition: 0.3s;
+      
+      &.active {
+        @include pos($l: 50%, $t: 60%);
+      }
+
+      &::after {
+        @include pos($l: 50%, $t: 2%);
+        transform: translate(-50%);
+        content: "";
+        display: block;
+        background-color: #aaa;
+        width: 40px;
+        height: 6px;
+        border-radius: 5px;
+      }
+
+      p {
+        color: #222;
+      }
+
+      .title-text {
+        background-color: #fff;
+        padding: 10% 0 10%;
+        height: 500px;
+        min-width: 360px;
+
+        > .main-title {
+          padding-top: 3%;
+          font-size: 3em;          
+          width: 100vw;
+        }
+
+        > .sub-title {
+          font-size: 2.5em;
+          width: 100vw;
+        }
+
+        > .text {
+          width:100vw;                    
+          > span {
+            display: block;
+            // padding: 0;
+            font-size: 1.2em;
+            font-weight: 400;
+            text-align: center;
+
+          }
+        }
+      }
+    }
+  }
+  .site-map-wrap{
+    display: none;   
+  }
+  
+}

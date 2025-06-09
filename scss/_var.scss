@@ -1,0 +1,106 @@
+//색상정의
+$primary-color:#0045a1 ; 
+$secondary-color:#D3EDFB ;
+$dark-blue:#00204a;
+$dark-grey:#111;
+$medium-grey:#999;
+$light-grey:#f0f0f0;
+$font-color: $dark-grey;
+$font-color-med: $medium-grey;
+$font-color-light: $light-grey;
+$bg-color: $primary-color;
+$bg-color-dark: $dark-blue;
+$bg-color-light: $secondary-color;
+
+//글자 크긱
+$fz-default:16px;
+$fz-small: 0.85em;
+$fz-medium: 1.4em;
+$fz-large: 2.0em;
+
+//줄간격 1.4~1.6 추천
+$lh-default: 1.6;
+$lh-large: 2.0;
+$lh-small: 1.2;
+
+//글꼴 (서체지정)
+//고딕 sans-serif, 명조 serif, 고정폭 서체 monospace(fixed-width)
+//font 정의 '영문', '한글', 시스템체
+$sans-serif:'poppins', 'pretendard', sans-serif;
+$serif: 'poppins', "Gowun Batang", serif;
+
+//함수 (재사용 가능한 기능)
+@mixin font-stack($size: null, $weight: null, $family: null, $color: null, $line-height: null) { // 함수에 지정값을 안쓰면 다시 지정해줘야하지만 null을 쓰면 지정안됨으로 정의됨
+    font: {
+        size: $size;
+        weight: $weight;
+        family: $family;
+    }
+    color:$color;
+    line-height:$line-height;
+
+    @content;
+}
+
+@mixin pos($pos: absolute, $l: null, $t: null, $r: null, $b: null) {
+    position: $pos;
+    left: $l;
+    top: $t;
+    right: $r;
+    bottom: $b;
+}
+
+@mixin flex($display: flex, $gap: null, $flex-direction: null, $flex-wrap: null, $justify-content: null, $align-items: null) {
+    display: $display;
+    gap: $gap;
+    flex-wrap: $flex-wrap;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin flex-center($display: flex, $justify-content: center, $align-items: center) {
+    display: $display;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin fill-image($file: null, $s: cover, $p: center center) {
+    background: url($file) $p / $s; //scss에서 한칸띄워 놓으면 투명이 적용됨
+}
+@mixin fit-image($file: null, $s: contain, $p: center center, $r: no-repeat) {
+    background: url($file) $p / $s $r; //scss에서 한칸띄워 놓으면 투명이 적용됨
+}
+
+//반응형 함수
+// Mobile 까지, 768px 미만
+@mixin mo {
+    @media screen and (max-width:767px){//내용을 추가하려면 @content; 명령어가 꼭들어가야함
+        @content;
+    }
+}
+// Tablet 부터, 768px 이상
+@mixin tb {
+    @media screen and (min-width:768px){
+        @content;
+    }
+}
+// Tablet 만, 768px ~ 1279px 이하
+@mixin tb-only {
+    @media screen and (min-width:768px) and (max-width:1279px){
+        @content;
+    }
+}
+// Laptop 부터 1280px 이상
+@mixin pc {
+    @media screen and (min-width:1280px) {
+        @content;
+    }
+}
+// Mega Laptop 부터 1920px 초과
+@mixin pc-meag {
+    @media screen and (min-width:1921px) {
+        @content;
+    }
+}
+

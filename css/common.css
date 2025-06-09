@@ -1,0 +1,761 @@
+@charset "UTF-8";
+/* 웹폰트 연결 */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap");
+
+/* 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: "poppins", "pretendard", sans-serif;
+  color: #111;
+  line-height: 1.6;
+  background-color: #fff;
+  word-break: keep-all;
+}
+
+body .mo-menu-wrap {
+  display: none;
+}
+
+ol,
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: #111;
+  text-decoration: none;
+}
+
+img,
+video,
+iframe {
+  vertical-align: middle;
+}
+
+input,
+select,
+textarea,
+button {
+  font-size: 1em;
+  font-family: "poppins", "pretendard", sans-serif;
+  color: #111;
+  outline: none;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+address,
+em,
+i {
+  font-style: normal;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* 공용클래스 */
+.inner {
+  max-width: 1720px;
+  padding: 0 12px;
+  margin: 0 auto;
+}
+
+.sound-only,
+.blind {
+  position: absolute;
+  left: -9999em;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* 구글아이콘 표시 */
+.icon-search::before {
+  content: "\e8b6";
+}
+
+.icon-home::before {
+  content: "\e88a";
+}
+
+.icon-menu::before {
+  content: "\e5d2";
+}
+
+.icon-close::before {
+  content: "\e5cd";
+}
+
+.icon-favorite::before {
+  content: "\e87d";
+}
+
+.icon-app::before {
+  content: "\e5c3";
+}
+
+.icon-arrow-basic::before {
+  content: "\e5cc";
+}
+
+.icon-arrow-forward::before {
+  content: "\e5c8";
+}
+
+.icon-arrow-round::before {
+  content: "\e5c3";
+}
+
+.icon-arrow-down::before {
+  content: "\e313";
+}
+
+.icon-download::before {
+  content: "\f090";
+}
+
+.icon-policy::before {
+  content: "\ea17";
+}
+
+.icon-sort::before {
+  content: "\e164";
+}
+
+.google-icon:before,
+.google-icon:after {
+  font-family: "Material Symbols Outlined";
+}
+
+.icon-small {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.icon-medium {
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.icon-large {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  font-size: 48px;
+  text-align: center;
+}
+
+/* 1.header */
+#yoon-hd {
+  position: fixed;
+  width: 100%;
+  padding:10px 0;
+  z-index: 1000;
+  transition: 0.5s;
+}
+
+#yoon-hd .logo>a {
+  background-image: url(../images/logo_wh.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: block;
+  width: 300px;
+  height: 50px;
+}
+
+#yoon-hd .logoB>a {
+  background-image: url(../images/logo.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: block;
+  width: 300px;
+  height: 50px;
+}
+
+#yoon-hd.whiteBg {
+  background-color: #fff;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+#yoon-hd.whiteBg .logo>a {
+  background-image: url(../images/logo.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: block;
+  width: 300px;
+  height: 50px;
+}
+
+#yoon-hd.whiteBg .main-menu-list>a {
+  display: block;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #000;
+}
+
+#yoon-hd.whiteBg .lang-list {
+  position: relative;
+  margin-right: 10px;
+}
+
+#yoon-hd.whiteBg .lang-list>a {
+  line-height: 10px;
+  font-size: 0.9em;
+  color: #000;
+}
+
+#yoon-hd.whiteBg .lang-list .icon-arrow-down {
+  font-size: 1.1em;
+  vertical-align: middle;
+}
+
+#yoon-hd.whiteBg .lang-list.on>.lang-en {
+  display: block;
+}
+
+#yoon-hd.whiteBg .icon-sort {
+  font-size: 1.9em;
+  line-height: 0;
+  padding-top: 15px;
+  color: #000;
+}
+
+#yoon-hd.whiteBg .gnb {
+  /* height: 100px; */
+}
+
+#yoon-hd.whiteBg .gnb:hover>.menu-wrap .bg-menu {
+  height: 335%;
+}
+
+#yoon-hd>.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* GNB */
+.gnb {
+  /* height: 100px; */
+}
+
+.gnb:hover>.menu-wrap .bg-menu {
+  height: 335%;
+}
+
+.menu-wrap {
+  display: flex;
+  justify-content: space-between;
+  /* margin-top: 15px; */
+}
+
+.menu-wrap:hover>li .sub-menu {
+  display: block;
+}
+
+.menu-wrap:hover>li>a {
+  color: #000;
+}
+
+.main-menu-list {
+  padding: 20px 60px;
+}
+
+.main-menu-list>a {
+  display: block;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #fff;
+}
+
+.sub-menu {
+  display: none;
+  margin-top: 30px;
+  padding: 30px 0px;
+  line-height: 2.5;
+}
+
+.sub-menu>li>a {
+  color: #999;
+}
+
+.sub-menu>li>a:hover {
+  color: #0045a1;
+}
+
+.bg-menu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: none;
+  background-color: #fcfcfc;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 0%;
+  z-index: -1;
+}
+
+.util-menu {
+  display: flex;
+}
+
+.lang-wrap {
+  display: flex;
+  gap: 20px;
+}
+
+.lang-wrap>a {
+  display: block;
+  width: 25px;
+  height: 25px;
+}
+
+.lang-wrap>a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lang-wrap .active {
+  display: block;
+}
+
+.lang-list {
+  position: relative;
+  margin-right: 10px;
+}
+
+.lang-list>a {
+  line-height: 10px;
+  font-size: 0.9em;
+  color: #fff;
+}
+
+.lang-list .icon-arrow-down {
+  font-size: 1.1em;
+  vertical-align: middle;
+}
+
+.lang-list.on>.lang-en {
+  display: block;
+}
+
+.lang-listB {
+  position: relative;
+  margin-right: 10px;
+}
+
+.lang-listB>a {
+  line-height: 10px;
+  font-size: 0.9em;
+  color: #000;
+}
+
+.lang-listB .icon-arrow-down {
+  font-size: 1.1em;
+  vertical-align: middle;
+}
+
+.lang-listB:hover>.lang-en {
+  display: block;
+}
+
+.lang-en {
+  display: none;
+  position: absolute;
+  left: -50%;
+  margin-top: 10px;
+  background-color: #fcfcfc;
+  padding: 10px 20px 10px;
+  box-shadow: 0 0 8 0.2;
+}
+
+.lang-en>a {
+  display: block;
+  text-align: center;
+  line-height: 2;
+  font-size: 0.85em;
+  color: #999;
+}
+
+.lang-en>a:hover {
+  color: #0045a1;
+  font-weight: 500;
+}
+
+.icon-sort {
+  font-size: 1.9em;
+  line-height: 0;
+  padding-top: 15px;
+  color: #fff;
+}
+
+.icon-sortB {
+  font-size: 1.9em;
+  line-height: 0;
+  padding-top: 15px;
+  color: #000;
+}
+
+#yoon-hero-wrap {
+  height: 100vh;
+}
+
+#yoon-hero-wrap .video-wrap {
+  position: relative;
+  height: 100%;
+  z-index: -1;
+}
+
+#yoon-hero-wrap .video-wrap::after {
+  content: "";
+  position: absolute;
+  left: 0%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+#yoon-hero-wrap .hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#yoon-hero-wrap .title-wrap {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+}
+
+#yoon-hero-wrap .title-wrap>.title-text .main-title {
+  font-size: 3.5em;
+}
+
+#yoon-hero-wrap .title-wrap>.title-text .sub-title {
+  font-size: 3em;
+  font-weight: 400;
+  padding-bottom: 15px;
+}
+
+#yoon-hero-wrap .title-wrap>.title-text .text {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+#yoon-hero-wrap .scroll-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  display: block;
+  animation: scrollAni 0.75s infinite alternate;
+  transform: translate(-50%);
+}
+
+#yoon-hero-wrap .scroll-btn>strong {
+  font-size: 0.95em;
+  font-weight: 200;
+  color: #fff;
+  opacity: 0.8;
+}
+
+@keyframes scrollAni {
+  0% {
+    bottom: 5%;
+    opacity: 0.8;
+  }
+
+  100% {
+    bottom: 1%;
+    opacity: 0.3;
+  }
+}
+
+.arrow-wrap {
+  position: relative;
+  display: block;
+  height: 50px;
+}
+
+.arrow1 {
+  position: absolute;
+  left: 40%;
+  top: -20%;
+  text-align: center;
+  font-size: 1.4em;
+  color: #fff;
+  opacity: 0.7;
+}
+
+.arrow2 {
+  position: absolute;
+  left: 40%;
+  top: -5%;
+  text-align: center;
+  font-size: 1.4em;
+  color: #fff;
+  opacity: 0.3;
+}
+
+.site-map-wrap {
+  position: fixed;
+  left: 2%;
+  bottom: 5%;
+  z-index: 1000;
+}
+
+.site-map-list>li {
+  margin: 10px 0;
+}
+
+.site-map-list>li a {
+  display: flex;
+  align-items: center;
+}
+
+.site-map-list>li a img {
+  display: block;
+  margin: 0 10px;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+
+.site-map-list>li a span {
+  display: block;
+  padding: 0 10px;
+  color: #666;
+}
+
+.site-map-list>li:hover img,
+.site-map-list>li.active img {
+  opacity: 1;
+}
+
+.site-map-list>li:hover span,
+.site-map-list>li.active span {
+  color: #fff;
+  background-color: rgba(0, 0, 255, 0.7);
+  border-radius: 3px;
+}
+
+.site-map-list>li>a {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.site-map-list>li>a img {
+  display: block;
+  margin: 0 10px;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+
+.site-map-list>li>a span {
+  display: block;
+  padding: 0 10px;
+  color: #666;
+}
+
+.site-map-list>li>a:hover>img {
+  opacity: 1;
+}
+
+.site-map-list>li>a:hover>span {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+/* mobile max-width 767px */
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 12px;
+  }
+
+  body .mo-menu-wrap {
+    display: block;
+  }
+
+  #yoon-hd {
+    /* position: absolute; */
+    background: none;
+    box-shadow: none;
+   
+  }
+
+  #yoon-hd .inner {
+    display: flex;
+    align-items: center;
+  }
+
+  #yoon-hd .inner .logo {
+    filter: invert(0);
+    display: block;
+    width: 200px;
+  }
+
+  #yoon-hd .inner .logo>a {
+    display: block;
+    width: 100%;
+    background-position: center center;
+  }
+
+  #yoon-hd .main-menu-list {
+    display: none;
+  }
+
+  #yoon-hd .util-menu {
+    filter: invert(0);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  #yoon-hd .util-menu .lang-wrap a {
+    display: block;
+    width: 23px;
+    height: 23px;
+  }
+
+  #yoon-hd .util-menu .lang-wrap a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #yoon-hd .util-menu .lang-wrap .lang-list {
+    display: none;
+  }
+
+  #yoon-hd .util-menu .lang-wrap .lang-list>a {
+    display: none;
+  }
+
+  #yoon-hd .util-menu>a {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
+
+  #yoon-hd .util-menu>a .icon-sort {
+    font-size: 2.5em;
+    /* color: #fff; */
+  }
+
+  #yoon-hd nav {
+    display: none;
+  }
+
+  #yoon-hero-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  #yoon-hero-wrap .scroll-btn {
+    display: none;
+  }
+
+  #yoon-hero-wrap .title-wrap {
+    position: absolute;
+    left: 50%;
+    top: 90%;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+
+  #yoon-hero-wrap .title-wrap.active {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+  }
+
+  #yoon-hero-wrap .title-wrap::after {
+    position: absolute;
+    left: 50%;
+    top: 2%;
+    transform: translate(-50%);
+    content: "";
+    display: block;
+    background-color: #aaa;
+    width: 40px;
+    height: 6px;
+    border-radius: 5px;
+  }
+
+  #yoon-hero-wrap .title-wrap p {
+    color: #222;
+  }
+
+  #yoon-hero-wrap .title-wrap .title-text {
+    background-color: #fff;
+    padding: 10% 0 10%;
+    height: 500px;
+    min-width: 360px;
+  }
+
+  #yoon-hero-wrap .title-wrap .title-text>.main-title {
+    padding-top: 3%;
+    font-size: 3em;
+    width: 100vw;
+  }
+
+  #yoon-hero-wrap .title-wrap .title-text>.sub-title {
+    font-size: 2.5em;
+    width: 100vw;
+  }
+
+  #yoon-hero-wrap .title-wrap .title-text>.text {
+    width: 100vw;
+  }
+
+  #yoon-hero-wrap .title-wrap .title-text>.text>span {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .site-map-wrap {
+    display: none;
+  }
+}
