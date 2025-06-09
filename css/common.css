@@ -23,7 +23,7 @@ body {
 }
 
 body .mo-menu-wrap {
-  display: none;
+  /* display: none; */
 }
 
 ol,
@@ -606,7 +606,7 @@ table {
   }
 
   body .mo-menu-wrap {
-    display: block;
+    /* display: block; */
   }
 
   #yoon-hd {

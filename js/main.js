@@ -14,7 +14,7 @@ $(function () {
 
     let showNum
     //윈도우의 너비값
-    let wWidth
+    let wWidth=$(window).outerWidth();
     //부모의 너비값
     let pWidth;
     //함수만들기
