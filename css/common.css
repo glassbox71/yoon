@@ -232,13 +232,6 @@ table {
   padding-top: 15px;
   color: #000;
 }
-#yoon-hd.whiteBg .gnb {
-  height: 100px;
-}
-#yoon-hd.whiteBg .gnb:hover > .menu-wrap .bg-menu {
-  height: 100%;
-}
-
 #yoon-hd > .inner {
   display: flex;
   justify-content: space-between;
@@ -249,14 +242,17 @@ table {
 .gnb {
   height: 100px;
 }
-.gnb:hover > .menu-wrap .bg-menu {
-  height: 335%;
+#yoon-hd:has(.menu-wrap:hover) {
+  background-color: #fcfcfc;
+}
+.menu-wrap:hover > .bg-menu {
+  display: block;
 }
 
 .menu-wrap {
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+  height: 100%;
 }
 .menu-wrap:hover > li .sub-menu {
   display: block;
@@ -266,6 +262,9 @@ table {
 }
 
 .main-menu-list {
+  position: relative;
+  display: flex;
+  align-items: center;
   padding: 20px 60px;
 }
 
@@ -278,8 +277,12 @@ table {
 
 .sub-menu {
   display: none;
-  margin-top: 30px;
-  padding: 30px 0px;
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  padding: 1em 0;
+  text-align: center;
+  white-space: nowrap;
   line-height: 2.5;
 }
 
@@ -291,14 +294,16 @@ table {
 }
 
 .bg-menu {
+  display: none;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 100%;
   max-width: none;
   background-color: #fcfcfc;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 0%;
+  height: var(--submenu-backdrop-height, 0px);
+  pointer-events: none;
   z-index: -1;
 }
 

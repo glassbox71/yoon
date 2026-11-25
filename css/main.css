@@ -2199,7 +2199,7 @@ footer .footer-bottom>.footer-right>.footer-site-map .site-map-list .footer-menu
 /* Viewport-aligned sections retain their natural height when content grows. */
 html {
   scroll-snap-type: y mandatory;
-  scroll-padding-top: 70px;
+  scroll-padding-top: 100px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -2228,7 +2228,7 @@ html {
 }
 
 #yoon-main-wrap > section {
-  min-height: calc(100svh - 70px);
+  min-height: calc(100svh - 100px);
 }
 
 #yoon-main-wrap .gallery-wrap {
@@ -2237,7 +2237,7 @@ html {
 
 .gallery-wrap .gallery-box {
   height: auto;
-  min-height: calc(100svh - 70px);
+  min-height: calc(100svh - 100px);
 }
 
 .gallery-wrap .gallery-box .gallery-text-box .text-box .gallery-list {
