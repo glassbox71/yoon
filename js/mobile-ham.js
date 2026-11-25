@@ -1,7 +1,8 @@
 $(function () {
-    let wWidth = $(window).outerWidth();
-    $(".util-menu>a").on("click", function () {
-        if (wWidth <= 767) {
+    const mobileLayout = window.matchMedia("(max-width: 1099px)");
+    $(".util-menu>a").on("click", function (event) {
+        if (mobileLayout.matches) {
+            event.preventDefault();
             $(".mo-menu-wrap").animate({
                 "right": 0
             }, 500);
@@ -15,7 +16,8 @@ $(function () {
         }, 500);
     })
 
-    $(".mo-main-menu>li>a").on("click", function () {
+    $(".mo-main-menu>li>a").on("click", function (event) {
+        event.preventDefault();
         $(this).toggleClass("active").next(".mo-sub-menu").slideToggle(500);
         $(this).parent().siblings().children("a").removeClass("active").next(".mo-sub-menu").slideUp(300)
     });

@@ -599,8 +599,8 @@ table {
   border-radius: 5px;
 }
 
-/* mobile max-width 767px */
-@media screen and (max-width: 767px) {
+/* mobile max-width 1099px */
+@media screen and (max-width: 1099px) {
   body {
     font-size: 12px;
   }

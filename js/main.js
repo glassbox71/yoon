@@ -1,44 +1,57 @@
 $(function () {
+    const panels = [...document.querySelectorAll("#yoon-hero-wrap, main > section, #yoon-ft")];
+    const root = document.documentElement;
+    let wheelTimer;
+
+    window.addEventListener("wheel", function (event) {
+        if (event.ctrlKey || !event.deltaY || Math.abs(event.deltaX) >= Math.abs(event.deltaY) ||
+            event.target.closest(".mo-menu-wrap")) {
+            return;
+        }
+
+        const atTop = window.scrollY < 2;
+        const inset = parseFloat(getComputedStyle(root).scrollPaddingTop);
+        const index = atTop ? 0 : panels.findIndex(panel => {
+            const bounds = panel.getBoundingClientRect();
+            return Math.abs(bounds.top - inset) < 3 && bounds.bottom <= window.innerHeight + 2;
+        });
+        const nextPanel = panels[index + Math.sign(event.deltaY)];
+
+        if (wheelTimer || (index >= 0 && nextPanel)) {
+            event.preventDefault();
+            if (!wheelTimer) {
+                nextPanel.scrollIntoView();
+            }
+            clearTimeout(wheelTimer);
+            wheelTimer = setTimeout(() => { wheelTimer = undefined; }, 350);
+        }
+    }, { passive: false });
+
     let showBanner = 0;
 
-    let liWidth = $(".main-slide>li:eq(0)").outerWidth();
-    console.log(liWidth);
+    const slide = $(".main-slide");
+    const originalCount = slide.children().length;
+    slide.append(slide.children().first().clone());
 
-    let first = $(".main-slide>li:eq(0)").clone();
-    $(".main-slide").append(first);
+    let liWidth;
 
-    let liCount = $(".main-slide>li").length;
-    console.log(liCount);
-
-    $(".main-slide").outerWidth(liWidth * liCount);
-
-    let showNum
-    //윈도우의 너비값
-    let wWidth=$(window).outerWidth();
-    //부모의 너비값
-    let pWidth;
-    //함수만들기
     function siteInit() {
-        showBanner = 0;
-        $(".main-slide").css("margin-left", 0)
-        wWidth = $(window).outerWidth();
-        if (wWidth > 767) {
-            showNum = 1;
-        }
-        console.log(showNum);
-
-        pWidth = liCount * 100 / showNum
-        $(".main-slide").outerWidth(pWidth + "%");
-        liWidth = $(".main-slide>li").outerWidth();
-
+        liWidth = slide.parent().width();
+        slide.stop().width(liWidth * slide.children().length);
+        slide.children().css("flex", "0 0 " + liWidth + "px");
+        showBanner %= originalCount;
+        slide.css("margin-left", -liWidth * showBanner);
     }
+
+    siteInit();
+
     function moveBanner() {
 
         $(".main-slide").stop().animate({
             "margin-left": -liWidth * showBanner
         }, 1000)
 
-        if (showBanner == 3) {
+        if (showBanner === originalCount) {
             $(".pager-dot>li").eq(0).addClass("active")
                 .siblings().removeClass("active");
         }
@@ -53,7 +66,7 @@ $(function () {
     })
     //오른쪽 클릭
     $(".right-arrow").on("click", function () {
-        if (showBanner == 3) {
+        if (showBanner === originalCount) {
             $(".main-slide").css("margin-left", 0);
             showBanner = 0;
         }
@@ -62,9 +75,9 @@ $(function () {
     })
     //왼쪽 클릭
     $(".left-arrow").on("click", function () {
-        if (showBanner == liCount) {
-            showBanner = 2;
-            $(".main-slide").css("margin-left", -liWidth * 2);
+        if (showBanner === 0) {
+            showBanner = originalCount;
+            slide.stop().css("margin-left", -liWidth * originalCount);
         }
         showBanner--;
         moveBanner();
@@ -94,10 +107,4 @@ $(function () {
         $(this).toggleClass("on");
     })
 
-    $(".site-map-list a").on("click", function (e) {
-      e.preventDefault(); // 기본 동작 방지
-      var target = $(this).attr("href");
-      var offset = $(target).offset().top;
-      $("html, body").animate({ scrollTop: offset }, 500);
-    });
 })

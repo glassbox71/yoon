@@ -1,30 +1,26 @@
 $(function () {
-    let sPos = [0];
-    let sCount = $("main>section").length;
-    for (i = 1; i <= sCount; i++) {
-        sPos[i] = $("main>section").eq(i - 1).offset().top;
-    }
-    console.log(sPos);
+    const header = $("#yoon-hd");
+    const sections = $("main > section");
+    const links = $(".site-map-list > li");
 
-    let posY;
-    $(window).on("scroll", function () {
-        posY = $(this).scrollTop();
-        if (posY > sPos[0]) {
-            $("header").addClass("whiteBg")
-        }
-        else {
-            $("header").removeClass("whiteBg");
-            $(".site-map-list>li").eq(0).addClass("active").siblings().removeClass("active")
-        }
+    function updateNavigation() {
+        const scrollTop = window.scrollY;
+        const sectionLine = scrollTop + parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) + 2;
+        let activeIndex = 0;
 
-        // console.log(sScroll);
-        for (i = 1; i <= sCount; i++) {
-            if (posY > (sPos[i]-200)) {
-                $(".site-map-list>li").eq(i).addClass("active").siblings().removeClass("active")
+        sections.each(function (index) {
+            if ($(this).offset().top <= sectionLine) {
+                activeIndex = index + 1;
             }
-        }        
-    })
-    
+        });
+
+        header.toggleClass("whiteBg", scrollTop > 0);
+        links.eq(activeIndex).addClass("active").siblings().removeClass("active");
+    }
+
+    $(window).on("scroll resize load", updateNavigation);
+    updateNavigation();
+
     //헤더 lang영역 언어박스
     $(".lang-list").on("click",function(e){
         $(this).toggleClass("on");

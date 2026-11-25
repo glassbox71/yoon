@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./images/nav-menu/레드태극%201.svg">
     <title>매헌윤봉길기념관</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/common.css">
@@ -90,7 +91,7 @@
     </header>
     <div id="yoon-hero-wrap">
         <div class="video-wrap">
-            <video src="./images/video/윤봉길히어로영역.mp4" class="hero-video" autoplay muted loop></video>
+            <video src="./images/video/윤봉길히어로영역.mp4" class="hero-video" autoplay muted loop playsinline></video>
         </div>
         <div class="title-wrap">
             <div class="title-text">
@@ -99,13 +100,13 @@
                 <p class="text"><span>사나이 집을 나가니</span><span>뜻을 이루지 않고는 살아 돌아오지 않겠다.</span></p>
             </div>
         </div>
-        <div class="scroll-btn">
+        <a class="scroll-btn" href="#hall-wrap">
             <strong>스크롤을 내려보세요</strong>
             <div class="arrow-wrap">
                 <span class="google-icon icon-arrow-down arrow1"></span>
                 <span class="google-icon icon-arrow-down arrow2"></span>
             </div>
-        </div>
+        </a>
     </div>
     <nav class="site-map-wrap">
         <ul class="site-map-list">
@@ -483,7 +484,7 @@
                 </div>
             </div>
         </div>
-        <div class="top-btn"><a href="#yoon-hd"></a></div>
+        <div class="top-btn"><a href="#yoon-hero-wrap" aria-label="맨 위로"></a></div>
     </footer>
     <div class="mo-menu-wrap">
         <div class="mo-main-wrap">
