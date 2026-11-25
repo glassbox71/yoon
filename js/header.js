@@ -3,6 +3,19 @@ $(function () {
     const sections = $("main > section");
     const links = $(".site-map-list > li");
 
+    const headerElement = header[0];
+    const submenus = [...headerElement.querySelectorAll(".gnb .sub-menu")];
+
+    const updateSubmenuBackdrop = new ResizeObserver(() => {
+        const headerBottom = headerElement.getBoundingClientRect().bottom;
+        const submenuBottom = Math.max(headerBottom, ...submenus.map(menu => menu.getBoundingClientRect().bottom));
+        headerElement.style.setProperty("--submenu-backdrop-height", (submenuBottom - headerBottom) + "px");
+    });
+
+    [headerElement, ...submenus].forEach(element => {
+        updateSubmenuBackdrop.observe(element, { box: "border-box" });
+    });
+
     function updateNavigation() {
         const scrollTop = window.scrollY;
         const sectionLine = scrollTop + parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) + 2;

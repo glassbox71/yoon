@@ -252,12 +252,12 @@ table {
 }
 
 /* GNB */
-.gnb {
-  --submenu-height: 12em;
+#yoon-hd:has(.menu-wrap:hover) {
+  background-color: #fcfcfc;
 }
 
 .menu-wrap:hover > .bg-menu {
-  height: calc(100% + var(--submenu-height));
+  display: block;
 }
 
 .menu-wrap {
@@ -291,7 +291,6 @@ table {
   position: absolute;
   top: 100%;
   inset-inline: 0;
-  min-height: var(--submenu-height);
   padding: 1em 0;
   text-align: center;
   white-space: nowrap;
@@ -307,14 +306,15 @@ table {
 }
 
 .bg-menu {
+  display: none;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 100%;
   max-width: none;
   background-color: #fcfcfc;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 0;
+  height: var(--submenu-backdrop-height, 0px);
   pointer-events: none;
   z-index: -1;
 }
