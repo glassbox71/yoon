@@ -232,6 +232,7 @@ table {
   padding-top: 15px;
   color: #000;
 }
+
 #yoon-hd > .inner {
   display: flex;
   justify-content: space-between;
@@ -242,17 +243,18 @@ table {
 .gnb {
   height: 100px;
 }
+
 #yoon-hd:has(.menu-wrap:hover) {
   background-color: #fcfcfc;
-}
-.menu-wrap:hover > .bg-menu {
-  display: block;
 }
 
 .menu-wrap {
   display: flex;
   justify-content: space-between;
   height: 100%;
+}
+.menu-wrap:hover > .bg-menu {
+  display: block;
 }
 .menu-wrap:hover > li .sub-menu {
   display: block;
@@ -294,7 +296,6 @@ table {
 }
 
 .bg-menu {
-  display: none;
   position: absolute;
   left: 0;
   top: 100%;

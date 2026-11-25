@@ -305,7 +305,7 @@ $icon-sizes: "small" 20px, "medium" 28px, "large" 48px;
 }
 
 .bg-menu {
-  display: none;
+  // display: none;
   @include pos($l: 0, $t: 100%);
   max-width: none;
   background-color: #fcfcfc;
