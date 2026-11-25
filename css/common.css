@@ -245,14 +245,6 @@ table {
   color: #000;
 }
 
-#yoon-hd.whiteBg .gnb {
-  /* height: 100px; */
-}
-
-#yoon-hd.whiteBg .gnb:hover>.menu-wrap .bg-menu {
-  height: 335%;
-}
-
 #yoon-hd>.inner {
   display: flex;
   justify-content: space-between;
@@ -261,11 +253,11 @@ table {
 
 /* GNB */
 .gnb {
-  /* height: 100px; */
+  --submenu-height: 12em;
 }
 
-.gnb:hover>.menu-wrap .bg-menu {
-  height: 335%;
+.menu-wrap:hover > .bg-menu {
+  height: calc(100% + var(--submenu-height));
 }
 
 .menu-wrap {
@@ -283,6 +275,7 @@ table {
 }
 
 .main-menu-list {
+  position: relative;
   padding: 20px 60px;
 }
 
@@ -295,8 +288,13 @@ table {
 
 .sub-menu {
   display: none;
-  margin-top: 30px;
-  padding: 30px 0px;
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  min-height: var(--submenu-height);
+  padding: 1em 0;
+  text-align: center;
+  white-space: nowrap;
   line-height: 2.5;
 }
 
@@ -316,7 +314,8 @@ table {
   background-color: #fcfcfc;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 0%;
+  height: 0;
+  pointer-events: none;
   z-index: -1;
 }
 
