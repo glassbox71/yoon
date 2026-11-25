@@ -34,10 +34,6 @@ body {
   // color: $font-color; // 컴퓨터는 '=' 을 같다는 표현이 아니라 대입되는 값으로 본다.
   word-break: keep-all;
   // min-height: 100vh;
-
-  .mo-menu-wrap{
-    display: none;
-  }
 }
 
 h2 {
@@ -586,21 +582,17 @@ $icon-sizes: "small" 20px, "medium" 28px, "large" 48px;
   }
 }
 
-/* mobile max-width 767px */
+/* mobile max-width 1099px */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1099px) {
   body {
     font-size: 12px;
-    .mo-menu-wrap{
-      display: block;
-    }
   }
 
   #yoon-hd {
-    position: absolute;
+    height: 50px;
     background: none;
     box-shadow: none;
-    padding-top: 10px;
 
     .inner {
       display: flex;

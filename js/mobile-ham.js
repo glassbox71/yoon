@@ -1,32 +1,63 @@
 $(function () {
     const mobileLayout = window.matchMedia("(max-width: 1099px)");
-    $(".util-menu>a").on("click", function (event) {
+    const root = document.documentElement;
+    const menu = document.querySelector("#mobile-menu");
+    const opener = document.querySelector('[aria-controls="mobile-menu"]');
+    const closer = menu.querySelector(".x-icon > a");
+
+    function setMenuOpen(open) {
+        menu.inert = !open;
+        menu.classList.toggle("is-open", open);
+        root.classList.toggle("mobile-menu-open", open);
+        opener.setAttribute("aria-expanded", String(open));
+
+        if (open || mobileLayout.matches) {
+            (open ? closer : opener).focus({ preventScroll: true });
+        }
+    }
+
+    opener.addEventListener("click", function (event) {
         if (mobileLayout.matches) {
             event.preventDefault();
-            $(".mo-menu-wrap").animate({
-                "right": 0
-            }, 500);
+            setMenuOpen(true);
         }
-    })
-
-    $(".x-icon>a").on("click", function () {
-        
-        $(".mo-menu-wrap").animate({
-            "right": "-100%"
-        }, 500);
-    })
-
-    $(".mo-main-menu>li>a").on("click", function (event) {
-        event.preventDefault();
-        $(this).toggleClass("active").next(".mo-sub-menu").slideToggle(500);
-        $(this).parent().siblings().children("a").removeClass("active").next(".mo-sub-menu").slideUp(300)
     });
-    //css에 
-    //  >a.active + .mo-sub-menu {
-    //   display: block;
-    // 를 주면 중복되서 안됨 active되는 것은 css에 중복으로 쓰면 안된다.}
-    $(".mo-sub-menu>li>a").on("click", function () {
+
+    closer.addEventListener("click", function (event) {
+        event.preventDefault();
+        setMenuOpen(false);
+    });
+
+    menu.addEventListener("click", function (event) {
+        if (event.target === menu) {
+            setMenuOpen(false);
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !menu.inert) {
+            setMenuOpen(false);
+        }
+    });
+
+    mobileLayout.addEventListener("change", function (event) {
+        if (!event.matches && !menu.inert) {
+            setMenuOpen(false);
+        }
+    });
+
+    $(".mo-main-menu > li > a").on("click", function (event) {
+        event.preventDefault();
+        $(this).toggleClass("active").next(".mo-sub-menu").stop(true, true).slideToggle(500);
+        $(this).parent().siblings().children("a").removeClass("active")
+            .next(".mo-sub-menu").stop(true, true).slideUp(300);
+    });
+
+    $(".mo-sub-menu > li > a").on("click", function (event) {
+        if (this.hash === "#void") {
+            event.preventDefault();
+        }
         $(this).toggleClass("active");
         $(this).parent().siblings().children("a").removeClass("active");
     });
-})
+});

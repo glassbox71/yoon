@@ -1218,11 +1218,6 @@ footer {
   }
 }
 
-//모바일 버전 햄버거메뉴 pc버전에서
-.mo-menu-wrap {
-  display: none;
-}
-
 @media screen and (max-width: 767px) {
   #yoon-main-wrap {
     // background-color: antiquewhite;
@@ -2035,50 +2030,35 @@ footer {
   }
 }
 
-//햄버거 메뉴
-// #yoon-hd {
-//   display: none;
-// }
+html.mobile-menu-open {
+  overflow: hidden;
+  scrollbar-width: none;
 
-.mo-menu-wrap {  
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  // height: 100%;
-  background-color: $primary-color;
-  z-index: 10000;
-
-  // display: block;
-  .mo-main-wrap {
+  &::-webkit-scrollbar {
     display: none;
-    position: relative;
-    width: 90%;
-    // height: 100%;
-    margin-left: 10%;
-    background-image: url(../images/sitemap_bg.jfif);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+  }
+}
 
-    &::before {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
+.mo-menu-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  &.is-open {
+    display: flex;
+  }
+
+  .mo-main-wrap {
+    width: min(80%, 420px);
+    background: $primary-color url(../images/sitemap_bg.jfif) center / cover no-repeat;
 
     .mo-menu-list {
-      position: relative;
-      height: 100vh;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: end;
-
 
       .top-logo {
         @include flex($justify-content: space-between);
@@ -2088,13 +2068,15 @@ footer {
 
         // height: 50px;
         .logo {
-          width: 300px;
+          width: min(300px, 100%);
+          min-width: 0;
           height: 50px;
 
           img {
             width: 100%;
             height: 100%;
-            margin: 0 auto;
+            object-fit: contain;
+            object-position: left center;
           }
 
         }
@@ -2117,12 +2099,16 @@ footer {
 
 
       .mo-main-menu {
-        padding-top: 20px;
-        height: 100vh;
-        overflow-y: scroll;
-        min-width: 320px;
+        flex: 1 1 0;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        scrollbar-width: none;
         line-height: 2.5;
-        margin-right: -17px;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
 
         >li {
           padding: 20px 20px 20px;
@@ -2176,24 +2162,19 @@ footer {
     }
 
     .mo-reservation {
-      // background-color: #fff;      
-      // position: absolute;
-      width: 100%;
-      height: 60px;
+      flex: none;
+      padding: 0 10px calc(10px + env(safe-area-inset-bottom, 0px));
 
       >.mo-reserve-btn {
         display: flex;
-        justify-content: space-around;
-        height: 300px;
-
+        gap: 12px;
 
         >li {
           display: block;
           border-radius: 3px;
           background-color: #fff;
-          width: 100%;
-          height: 50px;
-          margin: 0 10px;
+          flex: 1;
+          min-width: 0;
 
           >a {
             display: block;

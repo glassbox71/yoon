@@ -20,9 +20,6 @@ body {
   background-color: #fff;
   word-break: keep-all;
 }
-body .mo-menu-wrap {
-  display: none;
-}
 
 ol,
 ul {
@@ -561,19 +558,15 @@ table {
   border-radius: 5px;
 }
 
-/* mobile max-width 767px */
-@media screen and (max-width: 767px) {
+/* mobile max-width 1099px */
+@media screen and (max-width: 1099px) {
   body {
     font-size: 12px;
   }
-  body .mo-menu-wrap {
-    display: block;
-  }
   #yoon-hd {
-    position: absolute;
+    height: 50px;
     background: none;
     box-shadow: none;
-    padding-top: 10px;
   }
   #yoon-hd .inner {
     display: flex;
